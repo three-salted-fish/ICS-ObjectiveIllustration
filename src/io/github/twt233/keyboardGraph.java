@@ -26,7 +26,7 @@ public class keyboardGraph {
     private CategoryDataset dataSet;
     private JFreeChart chart;
 
-    keyboardGraph(String filePath) throws IOException {
+    public keyboardGraph(String filePath) throws IOException { // GRP ADD PUBLIC
         StringBuilder json = new StringBuilder();
         BufferedReader buf = new BufferedReader(new FileReader(filePath));
         String temp;
@@ -55,12 +55,13 @@ public class keyboardGraph {
 
         keyboardGraph kbg = new keyboardGraph("statistics/data/20190517/input.json");
 
-        ChartPanel cp = new ChartPanel(kbg.chart);
+        /*ChartPanel cp = new ChartPanel(kbg.chart);
         cp.setPreferredSize(new java.awt.Dimension(800, 600));
         af.setContentPane(cp);
         af.pack();
         RefineryUtilities.centerFrameOnScreen(af);
-        af.setVisible(true);
+        af.setVisible(true);*/
+        // GRP 2019.5.20 11:29am 注释
     }
 
     public CategoryDataset getDataSet() {
