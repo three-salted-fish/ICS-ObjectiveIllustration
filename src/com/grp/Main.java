@@ -15,7 +15,7 @@ public class Main
         // 生成Performance的图表并且写出到文件
 
         keyboardGraph keyboardChart = new keyboardGraph("statistics/data/20190517/input.json");
-        keyboardChart.main(null);
+        // keyboardChart.main(null);
         JFreeChart key_chart = keyboardChart.getChart();
         ChartToFile key_chart2file = new ChartToFile(key_chart);
         key_chart2file.toPNG(ChartToFile.Part.INPUT, 1200, 600);

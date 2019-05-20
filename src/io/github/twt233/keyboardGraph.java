@@ -4,14 +4,12 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.zzw.data.Input;
 import org.jfree.chart.ChartFactory;
-import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.renderer.category.CategoryItemRenderer;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
-import org.jfree.ui.ApplicationFrame;
-import org.jfree.ui.RefineryUtilities;
 
 import java.awt.*;
 import java.io.BufferedReader;
@@ -26,7 +24,7 @@ public class keyboardGraph {
     private CategoryDataset dataSet;
     private JFreeChart chart;
 
-    public keyboardGraph(String filePath) throws IOException { // GRP ADD PUBLIC
+    public keyboardGraph(String filePath) throws IOException {
         StringBuilder json = new StringBuilder();
         BufferedReader buf = new BufferedReader(new FileReader(filePath));
         String temp;
@@ -46,23 +44,15 @@ public class keyboardGraph {
         chart = ChartFactory.createBarChart("input Data", "Time", "Frequency",
                 dataSet, PlotOrientation.VERTICAL, true, true, false);
         CategoryItemRenderer render = chart.getCategoryPlot().getRenderer();
+
+        // GRP ADD
+        CategoryPlot myPlot = (CategoryPlot)chart.getPlot();
+        myPlot.setBackgroundPaint(Color.WHITE);
+        // chart.setBackgroundPaint(new Color(0xffffff));
         render.setSeriesPaint(0, new Color(0xDD9225));
         render.setSeriesPaint(1, new Color(0x21598F));
     }
 
-    public static void main(String[] args) throws IOException {
-        ApplicationFrame af = new ApplicationFrame("Input Statistics");
-
-        keyboardGraph kbg = new keyboardGraph("statistics/data/20190517/input.json");
-
-        /*ChartPanel cp = new ChartPanel(kbg.chart);
-        cp.setPreferredSize(new java.awt.Dimension(800, 600));
-        af.setContentPane(cp);
-        af.pack();
-        RefineryUtilities.centerFrameOnScreen(af);
-        af.setVisible(true);*/
-        // GRP 2019.5.20 11:29am 注释
-    }
 
     public CategoryDataset getDataSet() {
         return dataSet;
