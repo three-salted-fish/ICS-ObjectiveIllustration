@@ -26,6 +26,8 @@ import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartFrame;
 import org.jfree.chart.JFreeChart;
 import org.jfree.data.general.DefaultPieDataset;
+
+import javax.swing.plaf.ColorUIResource;
 import java.util.Date;
 import java.util.Calendar;
 public class Performpiechart {
@@ -83,11 +85,16 @@ public class Performpiechart {
                 false
         );
         PiePlot plot = (PiePlot) chart.getPlot();
-        Color color1=new Color(240,48,48);
-        Color color2=new Color(255,240,16);
-        Color color3=new Color(238,64,0);
+        Color color1=new Color(240, 95, 16);
+        Color color2=new Color(255, 248, 15);
+        Color color3=new Color(149, 238, 91);
         Color color4=new Color(141,238,238);
         Color color5=new Color(137,104,205);
+        /*Color color1=new Color(254, 67, 101);
+        Color color2=new Color(252,157,154);
+        Color color3=new Color(249, 205, 173);
+        Color color4=new Color(200,200,169);
+        Color color5=new Color(131,175,155);*/
         //设置每个块的颜色
         plot.setSectionOutlinesVisible(false);
         plot.setNoDataMessage("没有可供使用的数据！");
@@ -99,6 +106,10 @@ public class Performpiechart {
         plot.setBackgroundAlpha(0.0f);
         plot.setLabelGenerator(new StandardPieSectionLabelGenerator("{0}:{1}min({2})", NumberFormat.getNumberInstance(),new DecimalFormat("0.00%")));
         //显示时间占比
+
+        // GRP ADD
+        plot.setOutlinePaint(Color.WHITE);
+
       /*  ChartFrame PieFrame = new ChartFrame("昨日采集数据反馈报告", chart);
         PieFrame.pack();
         PieFrame.setVisible(true);
