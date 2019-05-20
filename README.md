@@ -24,7 +24,7 @@
 > > >
 > > > grp
 > > >
-> > > > [ChartToFile.java](./src/com/grp/ChartToFile.java)
+> > > > [ChartToFile.java](./src/com/grp/ChartToFile.java) 将JFreeChart类型的变量输出到./statistics/image文件夹下
 > > > >
 > > > > [ChooseDay.java](./src/com/grp/ChooseDay.java)
 > >
