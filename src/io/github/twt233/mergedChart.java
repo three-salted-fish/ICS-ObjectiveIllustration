@@ -6,6 +6,9 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * @author WQYL
+ */
 public class mergedChart {
     private BufferedImage mergedGraph;
 

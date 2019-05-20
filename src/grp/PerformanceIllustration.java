@@ -35,14 +35,14 @@ import org.jfree.ui.RectangleEdge;
 
 import java.lang.Exception;
 
+/**
+ * @author GRP
+ */
 public class PerformanceIllustration
 {
-    // private JFreeChart myChart;
-
-
-    public static JFreeChart main(String[] args) throws Exception
+    public static JFreeChart main(DirMode mode) throws Exception
     {
-        String dir = getDir(DirMode.TEST); //"statistics\\data\\20190517";
+        String dir = getDir(mode); //"statistics\\data\\20190517";
         // 通过参数的不同取值，决定取到的文件目录是测试用的还是实际上前一天的
         // System.out.println(dir);
 
@@ -53,22 +53,8 @@ public class PerformanceIllustration
         List<Performance> performanceData = readPerformanceData(dir, reader, gson);
         List<PerformancePoint> Points = getPoint(performanceData);
 
-        /*for (Performance performance : performanceData) {
-            System.out.println(performance.toString());
-        }*/
-
-        /*for (PerformancePoint point : Points) // 进行测试，测试是否得到了
-        {
-            System.out.println(point.toString());
-        }*/
-
         JFreeChart myChart = DrawPerformanceLineChart(Points);
 
-        // this.myChart = getChart(Points);
-        // toPNG(myChart);
-
-        /*ChartToFile toFile = new ChartToFile(myChart);
-        toFile.toPNG(ChartToFile.Part.PERFORMANCE, 1600, 400);*/
         return myChart;
 
     }
@@ -108,7 +94,6 @@ public class PerformanceIllustration
             SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
             dir += sdf.format(beforeDate);
         }
-
         return dir;
     }
 
@@ -133,28 +118,10 @@ public class PerformanceIllustration
         // 设置图例的字体
         // PLAIN为普通样式 BLOD为加粗
 
-
-
         ChartFactory.setChartTheme(myChartTheme);
         XYSeriesCollection myCollection = setCollection(Points);
 
         ChartFactory.setChartTheme(myChartTheme);
-        CategoryDataset myDataset = setDataset(Points);
-
-        /*JFreeChart myChart = ChartFactory.createLineChart(
-                "Performance",
-                "Hour",
-                "Engagement/Efficiency",
-                myDataset,
-                PlotOrientation.VERTICAL,
-                true,
-                true,
-                false
-        );
-        CategoryPlot myPlot = (CategoryPlot)myChart.getPlot();
-        myPlot.setBackgroundPaint(Color.WHITE);
-        myPlot.setRangeGridlinePaint(Color.WHITE);
-        myPlot.setOutlinePaint(Color.WHITE);*/
 
         JFreeChart myChart = ChartFactory.createXYLineChart(
                 "Performance",
@@ -166,10 +133,6 @@ public class PerformanceIllustration
                 false,
                 false
         );
-        // CategoryPlot myPlot = myChart.getCategoryPlot();
-        // myPlot.setBackgroundPaint(Color.WHITE);
-        /*myChart.setBackgroundPaint(Color.WHITE);
-        myChart.setBorderPaint(Color.WHITE);*/
         LegendTitle legend = myChart.getLegend();
         legend.setPosition(RectangleEdge.RIGHT);
         // 设置图例
@@ -179,40 +142,25 @@ public class PerformanceIllustration
 
         plot.setBackgroundAlpha(0f);
         // 前景色 透明度
-        plot.setForegroundAlpha(0.5f);
+        plot.setForegroundAlpha(0.8f);
+        plot.setOutlinePaint(Color.WHITE);
 
         XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer();
-        renderer.setSeriesPaint( 0 , Color.GREEN );
-        renderer.setSeriesPaint( 1 , Color.BLUE );
+        /**
+         * 调色部分
+         * @author YMY
+         */
+        Color color1 = new Color(0,191,255);
+        Color color2 = new Color(254,206,48);
+        renderer.setSeriesPaint( 0 , color1);
+        renderer.setSeriesPaint( 1 , color2);
         // renderer.setSeriesPaint( 2 , Color.YELLOW );
-        renderer.setSeriesStroke( 0 , new BasicStroke( 1.0f ) );
-        renderer.setSeriesStroke( 1 , new BasicStroke( 1.0f ) );
+        renderer.setSeriesStroke( 0 , new BasicStroke( 1.8f ) );
+        renderer.setSeriesStroke( 1 , new BasicStroke( 1.8f ) );
         // renderer.setSeriesStroke( 2 , new BasicStroke( 2.0f ) );
         plot.setRenderer(renderer);
-        // setContentPane( chartPanel );
-        // 其它设置可以参考XYPlot类
-
-        /*ChartFrame myChartFrame = new ChartFrame("折线图", myChart);
-        myChartFrame.pack();
-        myChartFrame.setVisible(true);*/
-
-        // toPNG(myChart);
 
         return myChart;
-    }
-
-    private static CategoryDataset setDataset(List<PerformancePoint> Points)
-    {
-        DefaultCategoryDataset myDataset = new DefaultCategoryDataset();
-        for (PerformancePoint point : Points)
-        {
-            /*if (point.getHour_x() == 2)
-                continue;*/
-            myDataset.addValue(point.getEngagement_y(), "Engagement", String.valueOf(point.getHour_x()));
-            myDataset.addValue(point.getEfficiency_y(), "Efficiency", String.valueOf(point.getHour_x()));
-        }
-
-        return myDataset;
     }
 
     private static XYSeriesCollection setCollection(List<PerformancePoint> Points)
@@ -232,54 +180,4 @@ public class PerformanceIllustration
 
         return myCollection;
     }
-
-    // 下面这段代码在迭代开发中失去了意义，由新的class ChartToFile代替
-    /*private static String nowDate(ChooseDay day) // 返回的格式为yyyyMMdd
-    {
-        String date = "";
-        if (day == ChooseDay.YESTERDAY)
-        {
-            Date nowDate = new Date();
-            Date beforeDate = new Date();
-
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTime(nowDate);
-
-            calendar.add(Calendar.DAY_OF_MONTH, -1); // 向前回溯一天
-            beforeDate = calendar.getTime();
-
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-            date += sdf.format(beforeDate);
-        }
-        else if (day == ChooseDay.TODAY)
-        {
-            Date nowDate = new Date();
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-            date += sdf.format(nowDate);
-        }
-
-        return date;
-    }
-
-    private static boolean toPNG(JFreeChart myChart) throws Exception
-    {
-        String dir = "statistics\\images\\";
-        String file = dir + nowDate(ChooseDay.TODAY) + ".png";
-
-        try {
-            OutputStream os = new FileOutputStream(file);
-            ChartUtilities.writeChartAsJPEG(os, myChart, 1600, 400);
-            //使用一个面向application的工具类，将chart转换成PNG格式的图片。第3个参数是宽度，第4个参数是高度
-            os.close();
-        }
-        catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
-        return true;
-    }*/
 }

@@ -18,6 +18,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author WQYL
+ */
 public class inputGraph {
 
     private CategoryDataset dataSet;
@@ -47,9 +50,14 @@ public class inputGraph {
         chart.getPlot().setBackgroundPaint(Color.WHITE);
         chart.setBackgroundPaint(Color.WHITE);
         chart.getPlot().setOutlinePaint(Color.WHITE);
+        chart.getPlot().setForegroundAlpha(0.8f);
 
         render.setSeriesPaint(0, new Color(0xDD9225));
         render.setSeriesPaint(1, new Color(0x21598F));
+
+        /*render.setSeriesPaint(0, new Color(41, 148,255));
+        *//*render.setSeriesPaint(1, new Color(255,219,97));*//*
+        render.setSeriesPaint(1, new Color(0xDDBA2E));*/
     }
 
 
