@@ -5,6 +5,7 @@ import com.google.gson.reflect.TypeToken;
 import com.zzw.data.Input;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.renderer.category.CategoryItemRenderer;
 import org.jfree.data.category.CategoryDataset;
@@ -43,7 +44,12 @@ public class keyboardGraph {
         chart = ChartFactory.createBarChart("input Data", "Time", "Frequency",
                 dataSet, PlotOrientation.VERTICAL, true, true, false);
         CategoryItemRenderer render = chart.getCategoryPlot().getRenderer();
-        chart.setBackgroundPaint(new Color(0xffffff));
+
+        // GRP ADD
+        CategoryPlot myPlot = (CategoryPlot)chart.getPlot();
+        myPlot.setBackgroundPaint(Color.WHITE);
+        // chart.setBackgroundPaint(new Color(0xffffff));
+
         render.setSeriesPaint(0, new Color(0xDD9225));
         render.setSeriesPaint(1, new Color(0x21598F));
     }
