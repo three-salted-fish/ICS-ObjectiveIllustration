@@ -2,5 +2,5 @@ package com.grp;
 
 public enum ChooseDay
 {
-    YESTERDAY, TODAY
+    YESTERDAY, TODAY, TEST_DAY
 }
