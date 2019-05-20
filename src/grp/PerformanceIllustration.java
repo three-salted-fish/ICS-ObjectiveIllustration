@@ -143,6 +143,7 @@ public class PerformanceIllustration
         plot.setBackgroundAlpha(0f);
         // 前景色 透明度
         plot.setForegroundAlpha(0.8f);
+
         plot.setOutlinePaint(Color.WHITE);
 
         XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer();

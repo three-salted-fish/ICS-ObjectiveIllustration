@@ -89,6 +89,7 @@ public class Performpiechart {
                 false
         );
         PiePlot plot = (PiePlot) chart.getPlot();
+
         /*Color color1=new Color(240, 95, 16);
         Color color2=new Color(255, 248, 15);
         Color color3=new Color(149, 238, 91);
@@ -109,6 +110,7 @@ public class Performpiechart {
         Color color3=new Color(209, 231, 167);
         Color color4=new Color(134,227,206);
         Color color5=new Color(204,172,219);
+
         //设置每个块的颜色
         plot.setSectionOutlinesVisible(false);
         plot.setNoDataMessage("没有可供使用的数据！");
