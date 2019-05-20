@@ -30,6 +30,10 @@ import org.jfree.data.general.DefaultPieDataset;
 import javax.swing.plaf.ColorUIResource;
 import java.util.Date;
 import java.util.Calendar;
+
+/**
+ * @author XJM
+ */
 public class Performpiechart {
     public static JFreeChart main(String[] args)
     {
@@ -37,9 +41,9 @@ public class Performpiechart {
         OkTextReader reader = new OkTextReader();
         Gson gson = new Gson();
 
-        System.out.println("\napplication data:");
+        // System.out.println("\napplication data:");
         Application ApplicationData = readApplicationData(dir, reader, gson);
-        System.out.println(ApplicationData.toString());
+        // System.out.println(ApplicationData.toString());
 
 
         JFreeChart chart=DrawApplicationPieChart(ApplicationData);
@@ -85,16 +89,28 @@ public class Performpiechart {
                 false
         );
         PiePlot plot = (PiePlot) chart.getPlot();
-        Color color1=new Color(240, 95, 16);
+
+        /*Color color1=new Color(240, 95, 16);
         Color color2=new Color(255, 248, 15);
         Color color3=new Color(149, 238, 91);
         Color color4=new Color(141,238,238);
-        Color color5=new Color(137,104,205);
-        /*Color color1=new Color(254, 67, 101);
-        Color color2=new Color(252,157,154);
-        Color color3=new Color(249, 205, 173);
-        Color color4=new Color(200,200,169);
-        Color color5=new Color(131,175,155);*/
+        Color color5=new Color(137,104,205);*/
+
+        /**
+         * 饼图调色
+         * @author YMY
+         */
+        /*Color color1=new Color(255, 115, 103);
+        Color color2=new Color(216,173,236);
+        Color color3=new Color(98, 242, 210);
+        Color color4=new Color(161,247,152);
+        Color color5=new Color(255,234,128);*/
+        Color color1=new Color(253, 137, 126);
+        Color color2=new Color(255,221,149);
+        Color color3=new Color(209, 231, 167);
+        Color color4=new Color(134,227,206);
+        Color color5=new Color(204,172,219);
+
         //设置每个块的颜色
         plot.setSectionOutlinesVisible(false);
         plot.setNoDataMessage("没有可供使用的数据！");
@@ -113,8 +129,7 @@ public class Performpiechart {
       /*  ChartFrame PieFrame = new ChartFrame("昨日采集数据反馈报告", chart);
         PieFrame.pack();
         PieFrame.setVisible(true);
-
-*/
+       */
         return chart;
     }
 
