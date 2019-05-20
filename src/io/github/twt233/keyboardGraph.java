@@ -49,6 +49,7 @@ public class keyboardGraph {
         CategoryPlot myPlot = (CategoryPlot)chart.getPlot();
         myPlot.setBackgroundPaint(Color.WHITE);
         // chart.setBackgroundPaint(new Color(0xffffff));
+
         render.setSeriesPaint(0, new Color(0xDD9225));
         render.setSeriesPaint(1, new Color(0x21598F));
     }
