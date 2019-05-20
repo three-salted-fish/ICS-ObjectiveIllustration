@@ -26,6 +26,14 @@ public class ChartToFile
         this.myChart = myChart;
     }
 
+    /**
+     *
+     * @param myChart 需要写入PNG文件的JFreeChart变量
+     */
+    public void setChart(JFreeChart myChart){
+        this.myChart = myChart;
+    }
+
     private static String nowDate(ChooseDay day) // 返回的格式为yyyyMMdd
     {
         String date = "";
