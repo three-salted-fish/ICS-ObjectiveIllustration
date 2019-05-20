@@ -37,7 +37,10 @@ import java.lang.Exception;
 
 public class PerformanceIllustration
 {
-    public static void main(String[] args) throws Exception
+    // private JFreeChart myChart;
+
+
+    public static JFreeChart main(String[] args) throws Exception
     {
         String dir = getDir(DirMode.TEST); //"statistics\\data\\20190517";
         // 通过参数的不同取值，决定取到的文件目录是测试用的还是实际上前一天的
@@ -46,7 +49,7 @@ public class PerformanceIllustration
         OkTextReader reader = new OkTextReader();
         Gson gson = new Gson();
 
-        System.out.println("\nperformance point data:");
+        // System.out.println("\nperformance point data:");
         List<Performance> performanceData = readPerformanceData(dir, reader, gson);
         List<PerformancePoint> Points = getPoint(performanceData);
 
@@ -54,16 +57,19 @@ public class PerformanceIllustration
             System.out.println(performance.toString());
         }*/
 
-        for (PerformancePoint point : Points) // 进行测试，测试是否得到了
+        /*for (PerformancePoint point : Points) // 进行测试，测试是否得到了
         {
             System.out.println(point.toString());
-        }
+        }*/
 
         JFreeChart myChart = DrawPerformanceLineChart(Points);
 
+        // this.myChart = getChart(Points);
         // toPNG(myChart);
-        ChartToFile toFile = new ChartToFile(myChart);
-        toFile.toPNG(ChartToFile.Part.PERFORMANCE, 1600, 400);
+
+        /*ChartToFile toFile = new ChartToFile(myChart);
+        toFile.toPNG(ChartToFile.Part.PERFORMANCE, 1600, 400);*/
+        return myChart;
 
     }
     private static List<Performance> readPerformanceData(String dir, OkTextReader reader, Gson gson)
@@ -77,6 +83,8 @@ public class PerformanceIllustration
         List<Performance> performanceData = gson.fromJson(json, type);
         return performanceData;
     }
+
+
 
     private static String getDir(DirMode mode)
     {

@@ -64,7 +64,7 @@ public class ChartToFile
     {
         String tail = "";
         String dir = "statistics\\images\\";
-        String file = dir + nowDate(ChooseDay.TODAY);
+        String file = dir + nowDate(ChooseDay.YESTERDAY);
 
         switch (part)
         {
