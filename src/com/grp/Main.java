@@ -1,8 +1,8 @@
 package com.grp;
 
 import grp.PerformanceIllustration;
+import io.github.twt233.inputGraph;
 import org.jfree.chart.JFreeChart;
-import io.github.twt233.keyboardGraph;
 import xjm.Performpiechart;
 
 public class Main
@@ -14,7 +14,7 @@ public class Main
         per_chart2file.toPNG(ChartToFile.Part.PERFORMANCE, 1600, 400);
         // 生成Performance的图表并且写出到文件
 
-        keyboardGraph keyboardChart = new keyboardGraph("statistics/data/20190517/input.json");
+        inputGraph keyboardChart = new inputGraph("statistics/data/20190517/input.json");
         // keyboardChart.main(null);
         JFreeChart key_chart = keyboardChart.getChart();
         ChartToFile key_chart2file = new ChartToFile(key_chart);
