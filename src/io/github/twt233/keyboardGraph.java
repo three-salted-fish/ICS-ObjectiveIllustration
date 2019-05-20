@@ -26,7 +26,7 @@ public class keyboardGraph {
     private CategoryDataset dataSet;
     private JFreeChart chart;
 
-    keyboardGraph(String filePath) throws IOException {
+    public keyboardGraph(String filePath) throws IOException {
         StringBuilder json = new StringBuilder();
         BufferedReader buf = new BufferedReader(new FileReader(filePath));
         String temp;
@@ -46,6 +46,7 @@ public class keyboardGraph {
         chart = ChartFactory.createBarChart("input Data", "Time", "Frequency",
                 dataSet, PlotOrientation.VERTICAL, true, true, false);
         CategoryItemRenderer render = chart.getCategoryPlot().getRenderer();
+        chart.setBackgroundPaint(new Color(0xffffff));
         render.setSeriesPaint(0, new Color(0xDD9225));
         render.setSeriesPaint(1, new Color(0x21598F));
     }
@@ -57,6 +58,7 @@ public class keyboardGraph {
 
         ChartPanel cp = new ChartPanel(kbg.chart);
         cp.setPreferredSize(new java.awt.Dimension(800, 600));
+        cp.setBackground(new Color(0x000000));
         af.setContentPane(cp);
         af.pack();
         RefineryUtilities.centerFrameOnScreen(af);
