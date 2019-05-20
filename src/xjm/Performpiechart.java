@@ -29,9 +29,9 @@ import org.jfree.data.general.DefaultPieDataset;
 import java.util.Date;
 import java.util.Calendar;
 public class Performpiechart {
-    public static void main(String[] args)
+    public static JFreeChart main(String[] args)
     {
-        String dir = "statistics\\data\\20190517";
+        String dir = "statistics\\data\\20190517";//文件路径
         OkTextReader reader = new OkTextReader();
         Gson gson = new Gson();
 
@@ -40,7 +40,8 @@ public class Performpiechart {
         System.out.println(ApplicationData.toString());
 
 
-       DrawApplicationPieChart(ApplicationData);
+        JFreeChart chart=DrawApplicationPieChart(ApplicationData);
+        return chart;
         // 写图表对象到文件，参照柱状图生成源码
     }
     private static Application readApplicationData(String dir, OkTextReader reader, Gson gson)
@@ -61,7 +62,7 @@ public class Performpiechart {
         dataset.setValue("Others",ApplicationData.getOtherTime()/60000);
         return dataset;
     }
-    private static void DrawApplicationPieChart(Application ApplicationData)
+    private static JFreeChart DrawApplicationPieChart(Application ApplicationData)
     {
         StandardChartTheme myChartTheme = new StandardChartTheme("CN");
         // 设置主题样式
@@ -98,12 +99,12 @@ public class Performpiechart {
         plot.setBackgroundAlpha(0.0f);
         plot.setLabelGenerator(new StandardPieSectionLabelGenerator("{0}:{1}min({2})", NumberFormat.getNumberInstance(),new DecimalFormat("0.00%")));
         //显示时间占比
-        ChartFrame PieFrame = new ChartFrame("昨日采集数据反馈报告", chart);
+      /*  ChartFrame PieFrame = new ChartFrame("昨日采集数据反馈报告", chart);
         PieFrame.pack();
         PieFrame.setVisible(true);
 
-
-        return;
+*/
+        return chart;
     }
 
 }
